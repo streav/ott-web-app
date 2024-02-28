@@ -6,39 +6,19 @@ useHead({
     lang: 'en',
   },
   charset: 'utf-8',
-  title: 'Nuxt Movies',
-  titleTemplate: title => title !== 'Nuxt Movies' ? `${title} · Nuxt Movies` : title,
+  title: 'Streav OTT Web App',
+  titleTemplate: title => title !== 'Streav OTT Web App' ? `${title} · Streav OTT Web App` : title,
   meta: [
-    { name: 'description', content: 'A TMDB client built with Nuxt Image to show the potential of it ✨' },
-    { property: 'og:image', content: 'https://movies.nuxt.space/social-card.png' },
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:site', content: '@nuxt_js' },
-    { name: 'twitter:creator', content: '@nuxt_js' },
-  ],
-  link: [
-    {
-      rel: 'icon',
-      type: 'image/webp',
-      href: '/movies.webp',
-    },
-  ],
+    { name: 'description', content: 'An OTT web app built with Streav to show the potential of it.' }
+  ]
 })
 </script>
 
 <template>
   <NuxtLoadingIndicator />
-  <div
-    h-full w-full font-sans
-    grid="~ lt-lg:rows-[1fr_max-content] lg:cols-[max-content_1fr]"
-    of-hidden view-transition-app transition duration-0
-  >
-    <div id="app-scroller" of-x-hidden of-y-auto relative>
-      <NuxtPage />
-    </div>
-    <NavBar lg:order-first />
-    <IframeModal />
-    <PhotoModal />
-  </div>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
 
 <style>
