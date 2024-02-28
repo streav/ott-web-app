@@ -22,6 +22,29 @@ builder.Services.AddIdentityApiEndpoints<User>().AddEntityFrameworkStores<AppDbC
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var streavConf = builder.Configuration.GetSection("Streav");
+
+var apiBaseUrl = streavConf.GetValue<string>("ApiBaseUrl");
+var clientId = streavConf.GetValue<string>("ClientId");
+var clientSecret = streavConf.GetValue<string>("ClientSecret");
+
+if (string.IsNullOrWhiteSpace(apiBaseUrl))
+{
+    throw new InvalidOperationException("Streav API base url is not configured.");
+}
+
+if (string.IsNullOrWhiteSpace(clientId))
+{
+    throw new InvalidOperationException("Streav API client ID is not configured.");
+}
+
+if (string.IsNullOrWhiteSpace(clientSecret))
+{
+    throw new InvalidOperationException("Streav API client secret is not configured.");
+}
+
+builder.Services.AddStreavHttpClient(apiBaseUrl, clientId, clientSecret);
+
 var app = builder.Build();
 
 // migrate database
