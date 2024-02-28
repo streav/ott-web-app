@@ -47,7 +47,7 @@ app.UseAuthorization();
 
 app.UseStaticFiles();
 
-app.MapIdentityApi<User>();
+app.MapGroup("/api/auth").MapIdentityApi<User>();
 
 app.MapControllers();
 
