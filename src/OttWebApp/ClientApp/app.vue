@@ -9,20 +9,20 @@ useHead({
   title: 'Streav OTT Web App',
   titleTemplate: title => title !== 'Streav OTT Web App' ? `${title} · Streav OTT Web App` : title,
   meta: [
-    { name: 'description', content: 'An OTT web app built with Streav to show the potential of it.' }
+    {name: 'description', content: 'An OTT web app built with Streav to show the platform\'s capabilities.'}
   ]
 })
 </script>
 
 <template>
-  <NuxtLoadingIndicator />
+  <NuxtLoadingIndicator/>
   <NuxtLayout>
-    <NuxtPage />
+    <NuxtPage/>
   </NuxtLayout>
 </template>
 
 <style>
-html, body , #__nuxt{
+html, body, #__nuxt {
   height: 100vh;
   margin: 0;
   padding: 0;

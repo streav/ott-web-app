@@ -1,9 +1,6 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
-  <div>
-    <TheFooter />
-  </div>
+  <Hero/>
+  <CarouselMovie/>
+  <CarouselShow/>
+  <TheFooter/>
 </template>
