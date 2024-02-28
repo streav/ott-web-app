@@ -14,7 +14,7 @@ const loading = ref(false)
 onMounted(async () => {
   loading.value = true
 
-  const {data, error} = await getMostPopularMovie()
+  const {data, error} = await getLatestMovie()
 
   if (!error.value) {
     item.value = data.value

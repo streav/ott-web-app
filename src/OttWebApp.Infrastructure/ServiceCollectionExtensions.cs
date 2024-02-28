@@ -30,6 +30,6 @@ public static class ServiceCollectionExtensions
         });
 
         services.AddClientAccessTokenHttpClient("streav",
-            configureClient: client => { client.BaseAddress = new Uri(apiBaseUrl + "v1"); });
+            configureClient: client => { client.BaseAddress = new Uri(apiBaseUrl + "v1/"); });
     }
 }

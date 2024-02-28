@@ -8,6 +8,6 @@ export function getPopularShows() {
     return useFetch<PaginatedList<Show>>('/api/shows/popular')
 }
 
-export function getMostPopularMovie() {
-    return useFetch<Movie>('/api/movies/most-popular')
+export function getLatestMovie() {
+    return useFetch<Movie>('/api/movies/latest')
 }

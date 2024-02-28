@@ -11,9 +11,12 @@ export function formatTime(minutes: number) {
 
     // mins
     const mins = Math.floor(secondsLeft / 60)
-    secondsLeft = secondsLeft % 60
 
     return `${hours ? `${hours}h` : ''} ${mins}min`
 }
 
 export const {format: formatVote} = Intl.NumberFormat('en-GB', {notation: 'compact', maximumFractionDigits: 1})
+
+export function getTmdbImageUrl(url: string | null) {
+    return url?.replace('{TMDB_BASE_PATH}', 'https://image.tmdb.org/t/p/w500')
+}

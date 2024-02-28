@@ -17,12 +17,11 @@ defineProps<{
       transition duration-400
       hover="scale-105 z10"
     >
-      <NuxtImg
+      <img
         v-if="item.posterUrl"
         width="400"
         height="600"
-        format="webp"
-        :src="`/tmdb${item.posterUrl}`"
+        :src="getTmdbImageUrl(item.posterUrl)"
         :alt="item.title"
         w-full h-full object-cover
         :style="{ 'view-transition-name': `item-${item.id}` }"

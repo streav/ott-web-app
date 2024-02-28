@@ -11,4 +11,10 @@
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.Http">
+        <HintPath>..\..\..\..\..\..\usr\share\dotnet\shared\Microsoft.AspNetCore.App\8.0.2\Microsoft.Extensions.Http.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>

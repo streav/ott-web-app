@@ -12,8 +12,7 @@ export default defineNuxtConfig({
   },
   modules: [
     '@vueuse/nuxt',
-    '@unocss/nuxt',
-    '@nuxt/image'
+    '@unocss/nuxt'
   ],
   experimental: {
     inlineSSRStyles: false,

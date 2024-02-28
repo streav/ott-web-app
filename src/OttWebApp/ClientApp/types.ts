@@ -11,7 +11,7 @@ export interface Movie {
     id: number;
     title?: string | null;
     overview?: string | null;
-    releaseDate?: Date | null;
+    releaseDate?: string | null;
     runtimeMinutes?: number | null;
     language?: string | null;
     countryCode?: string | null;
@@ -29,8 +29,8 @@ export interface Show {
     id: number;
     title?: string | null;
     overview?: string | null;
-    releaseDate?: Date | null;
-    lastReleaseDate?: Date | null;
+    releaseDate?: string | null;
+    lastReleaseDate?: string | null;
     runtimeMinutes?: number | null;
     language?: string | null;
     countryCode?: string | null;
