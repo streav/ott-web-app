@@ -25,6 +25,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\OttWebApp.Application\OttWebApp.Application.csproj" />
       <ProjectReference Include="..\OttWebApp.Infrastructure\OttWebApp.Infrastructure.csproj" />
     </ItemGroup>
 

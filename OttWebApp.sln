@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OttWebApp.Infrastructure", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OttWebApp.Core", "src\OttWebApp.Core\OttWebApp.Core.csproj", "{77BE44DD-2CE0-4023-94FC-1C31874EA82D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OttWebApp.Application", "src\OttWebApp.Application\OttWebApp.Application.csproj", "{FA796DC2-2ADF-47B9-852A-13F8E32EDE81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{77BE44DD-2CE0-4023-94FC-1C31874EA82D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77BE44DD-2CE0-4023-94FC-1C31874EA82D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77BE44DD-2CE0-4023-94FC-1C31874EA82D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA796DC2-2ADF-47B9-852A-13F8E32EDE81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA796DC2-2ADF-47B9-852A-13F8E32EDE81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA796DC2-2ADF-47B9-852A-13F8E32EDE81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA796DC2-2ADF-47B9-852A-13F8E32EDE81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

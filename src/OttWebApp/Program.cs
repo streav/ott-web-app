@@ -1,3 +1,4 @@
+using OttWebApp.Application;
 using OttWebApp.Core.Entity;
 using OttWebApp.Infrastructure;
 using OttWebApp.Infrastructure.EntityFramework;
@@ -44,6 +45,8 @@ if (string.IsNullOrWhiteSpace(clientSecret))
 }
 
 builder.Services.AddStreavHttpClient(apiBaseUrl, clientId, clientSecret);
+
+builder.Services.AddApplication();
 
 var app = builder.Build();
 
