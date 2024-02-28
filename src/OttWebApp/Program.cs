@@ -24,6 +24,13 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// migrate database
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    context.Database.EnsureCreated();
+}
+
 if (builder.Environment.IsDevelopment())
 {
     app.UseSwagger();

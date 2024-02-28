@@ -39,3 +39,5 @@ msbuild.wrn
 node_modules
 
 appsettings*.json
+
+ott.db*
