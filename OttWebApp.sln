@@ -1,6 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OttWebApp", "OttWebApp\OttWebApp.csproj", "{88C227DF-FE29-4FE2-8F18-7BFAD74D0E87}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OttWebApp", "src\OttWebApp\OttWebApp.csproj", "{88C227DF-FE29-4FE2-8F18-7BFAD74D0E87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OttWebApp.Infrastructure", "src\OttWebApp.Infrastructure\OttWebApp.Infrastructure.csproj", "{F10B37D7-5FDD-4110-A527-235FA37F2B5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OttWebApp.Core", "src\OttWebApp.Core\OttWebApp.Core.csproj", "{77BE44DD-2CE0-4023-94FC-1C31874EA82D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +16,13 @@ Global
 		{88C227DF-FE29-4FE2-8F18-7BFAD74D0E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88C227DF-FE29-4FE2-8F18-7BFAD74D0E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88C227DF-FE29-4FE2-8F18-7BFAD74D0E87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F10B37D7-5FDD-4110-A527-235FA37F2B5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F10B37D7-5FDD-4110-A527-235FA37F2B5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F10B37D7-5FDD-4110-A527-235FA37F2B5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F10B37D7-5FDD-4110-A527-235FA37F2B5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77BE44DD-2CE0-4023-94FC-1C31874EA82D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77BE44DD-2CE0-4023-94FC-1C31874EA82D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77BE44DD-2CE0-4023-94FC-1C31874EA82D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77BE44DD-2CE0-4023-94FC-1C31874EA82D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
