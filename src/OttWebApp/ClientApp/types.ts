@@ -9,50 +9,50 @@ export interface PaginatedList<T> {
 
 export interface Movie {
     id: number;
-    title?: string | null;
-    overview?: string | null;
-    releaseDate?: string | null;
-    runtimeMinutes?: number | null;
-    language?: string | null;
-    countryCode?: string | null;
-    posterUrl?: string | null;
-    backdropUrl?: string | null;
-    rating?: number | null;
-    ratingSource?: string | null;
-    director?: string | null;
-    streamId?: number | null;
-    genres?: Genre[] | null;
-    casts?: Cast[] | null;
+    title?: string;
+    overview?: string;
+    releaseDate?: string;
+    runtimeMinutes?: number;
+    language?: string;
+    countryCode?: string;
+    posterUrl?: string;
+    backdropUrl?: string;
+    rating?: number;
+    ratingSource?: string;
+    director?: string;
+    streamId?: number;
+    genres?: Genre[];
+    casts?: Cast[];
 }
 
 export interface Show {
     id: number;
-    title?: string | null;
-    overview?: string | null;
-    releaseDate?: string | null;
-    lastReleaseDate?: string | null;
-    runtimeMinutes?: number | null;
-    language?: string | null;
-    countryCode?: string | null;
-    posterUrl?: string | null;
-    backdropUrl?: string | null;
-    rating?: number | null;
-    ratingSource?: string | null;
-    director?: string | null;
-    genres?: Genre[] | null;
-    casts?: Cast[] | null;
+    title?: string;
+    overview?: string;
+    releaseDate?: string;
+    lastReleaseDate?: string;
+    runtimeMinutes?: number;
+    language?: string;
+    countryCode?: string;
+    posterUrl?: string;
+    backdropUrl?: string;
+    rating?: number;
+    ratingSource?: string;
+    director?: string;
+    genres?: Genre[];
+    casts?: Cast[];
 }
 
 export interface Genre {
     id: number;
-    name?: string | null;
+    name?: string;
 }
 
 export interface Cast {
     id: number;
-    name?: string | null;
-    profilePictureUrl?: string | null;
-    character?: string | null;
+    name?: string;
+    profilePictureUrl?: string;
+    character?: string;
 }
 
 export enum PersonGender {
@@ -64,14 +64,33 @@ export enum PersonGender {
 
 export interface Person {
     id: number;
-    name?: string | null;
-    biography?: string | null;
-    knownFor?: string | null;
-    birthDate?: string | null;
-    deathDay?: string | null;
-    birthPlace?: string | null;
-    profilePictureUrl?: string | null;
+    name?: string;
+    biography?: string;
+    knownFor?: string;
+    birthDate?: string;
+    deathDay?: string;
+    birthPlace?: string;
+    profilePictureUrl?: string;
     gender: PersonGender;
-    imdbId?: string | null;
+    imdbId?: string;
     popularity: number;
+}
+
+export interface ShowSeason {
+    number: number;
+    name?: string;
+    overview?: string;
+    releaseDate?: string;
+    posterUrl?: string;
+    backdropUrl?: string;
+}
+
+export interface ShowEpisode {
+    number: number;
+    name?: string;
+    overview?: string;
+    releaseDate?: Date;
+    runtimeMinutes?: number;
+    backdropUrl?: string;
+    streamId?: number;
 }

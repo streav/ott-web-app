@@ -31,4 +31,23 @@ public class ShowController : ControllerBase
     {
         return _mediator.Send(new GetPopularShows(), cancellationToken);
     }
+
+    [HttpGet("{id:int}/seasons")]
+    public Task<IEnumerable<ShowSeasonDto>?> Seasons(int id, CancellationToken cancellationToken)
+    {
+        return _mediator.Send(new GetShowSeasons
+        {
+            Id = id
+        }, cancellationToken);
+    }
+
+    [HttpGet("{id:int}/seasons/{number:int}")]
+    public Task<IEnumerable<ShowEpisodeDto>?> Episodes(int id, int number, CancellationToken cancellationToken)
+    {
+        return _mediator.Send(new GetSeasonEpisodes
+        {
+            ShowId = id,
+            SeasonNumber = number
+        }, cancellationToken);
+    }
 }

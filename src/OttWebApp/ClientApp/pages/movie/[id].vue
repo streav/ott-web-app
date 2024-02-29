@@ -3,7 +3,7 @@ import type { Movie } from '~/types'
 
 const route = useRoute()
 
-const {data} = await getMovie(route.params.id as string)
+const {data} = await getMovie(route.params.id as number)
 
 const item = ref(data.value as Movie)
 

@@ -3,7 +3,7 @@ import type { Show } from '~/types'
 
 const route = useRoute()
 
-const {data} = await getShow(route.params.id as string)
+const {data} = await getShow(route.params.id as number)
 
 const item = ref(data.value as Show)
 

@@ -6,7 +6,7 @@ defineProps<{
   type: MediaType
 }>()
 
-const tab = ref<'overview' | 'casts'>('overview')
+const tab = ref<'overview' | 'episodes' | 'casts'>('overview')
 </script>
 
 <template>
@@ -14,11 +14,17 @@ const tab = ref<'overview' | 'casts'>('overview')
     <button n-tab :class="{ 'n-tab-active': tab === 'overview' }" @click="tab = 'overview'">
       Overview
     </button>
+    <button v-if="type === 'show'" n-tab :class="{ 'n-tab-active': tab === 'episodes' }" @click="tab = 'episodes'">
+      Episodes
+    </button>
     <button v-if="item.casts?.length" n-tab :class="{ 'n-tab-active': tab === 'casts' }" @click="tab = 'casts'">
       Casts
     </button>
   </div>
   <MediaInfo v-if="tab === 'overview'" :item="item" :type="type"/>
+
+  <MediaSeason v-if="tab === 'episodes'" :item="item"/>
+
   <CarouselBase v-if="tab === 'casts' && item.casts?.length">
     <PersonCard
         v-for="i of item.casts"
