@@ -15,3 +15,7 @@ export function getLatestMovie() {
 export function getMovie(id: string) {
     return useFetch<Movie>(`/api/movies/${id}`)
 }
+
+export function getShow(id: string) {
+    return useFetch<Show>(`/api/shows/${id}`)
+}

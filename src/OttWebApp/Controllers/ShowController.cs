@@ -17,6 +17,15 @@ public class ShowController : ControllerBase
         _mediator = mediator;
     }
 
+    [HttpGet("{id:int}")]
+    public Task<ShowDto?> Index(int id, CancellationToken cancellationToken)
+    {
+        return _mediator.Send(new GetShow
+        {
+            Id = id
+        }, cancellationToken);
+    }
+
     [HttpGet("popular")]
     public Task<PaginatedListDto<ShowDto>?> Index(CancellationToken cancellationToken)
     {
