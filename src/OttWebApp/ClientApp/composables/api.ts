@@ -11,3 +11,7 @@ export function getPopularShows() {
 export function getLatestMovie() {
     return useFetch<Movie>('/api/movies/latest')
 }
+
+export function getMovie(id: string) {
+    return useFetch<Movie>(`/api/movies/${id}`)
+}

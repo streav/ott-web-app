@@ -17,6 +17,15 @@ public class MovieController : ControllerBase
         _mediator = mediator;
     }
 
+    [HttpGet("{id:int}")]
+    public Task<MovieDto?> Index(int id, CancellationToken cancellationToken)
+    {
+        return _mediator.Send(new GetMovie
+        {
+            Id = id
+        }, cancellationToken);
+    }
+
     [HttpGet("popular")]
     public Task<PaginatedListDto<MovieDto>?> Index(CancellationToken cancellationToken)
     {

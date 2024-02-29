@@ -6,8 +6,8 @@ useHead({
     lang: 'en',
   },
   charset: 'utf-8',
-  title: 'Streav OTT Web App',
-  titleTemplate: title => title !== 'Streav OTT Web App' ? `${title} · Streav OTT Web App` : title,
+  title: 'Streav OTT',
+  titleTemplate: title => title !== 'Streav OTT' ? `${title} · Streav OTT` : title,
   meta: [
     {name: 'description', content: 'An OTT web app built with Streav to show the platform\'s capabilities.'}
   ]

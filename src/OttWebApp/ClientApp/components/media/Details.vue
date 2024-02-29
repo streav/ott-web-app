@@ -1,27 +1,30 @@
 <script setup lang="ts">
-import type { Media, MediaType } from '~/types'
+import type {Movie, Show, MediaType} from '~/types'
 
 defineProps<{
-  item: Media
+  item: Movie | Show
   type: MediaType
 }>()
 
-const tab = ref<'overview' | 'videos' | 'photos'>('overview')
+const tab = ref<'overview' | 'casts'>('overview')
 </script>
 
 <template>
   <div flex items-center justify-center gap8 py6>
     <button n-tab :class="{ 'n-tab-active': tab === 'overview' }" @click="tab = 'overview'">
-      {{ $t('Overview') }}
+      Overview
     </button>
-    <button n-tab :class="{ 'n-tab-active': tab === 'videos' }" @click="tab = 'videos'">
-      {{ $t('Videos') }}
-    </button>
-    <button n-tab :class="{ 'n-tab-active': tab === 'photos' }" @click="tab = 'photos'">
-      {{ $t('Media Photos') }}
+    <button v-if="item.casts?.length" n-tab :class="{ 'n-tab-active': tab === 'casts' }" @click="tab = 'casts'">
+      Casts
     </button>
   </div>
-  <MediaOverview v-if="tab === 'overview'" :item="item" :type="type" />
-  <MediaVideos v-if="tab === 'videos'" :item="item" />
-  <MediaPhotos v-if="tab === 'photos'" :item="item" />
+  <MediaInfo v-if="tab === 'overview'" :item="item" :type="type"/>
+  <CarouselBase v-if="tab === 'casts' && item.casts?.length">
+    <PersonCard
+        v-for="i of item.casts"
+        :key="i.id"
+        :item="i"
+        flex-1 w-50
+    />
+  </CarouselBase>
 </template>

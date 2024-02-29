@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Person } from '~/types'
+import type { BasicPerson } from '~/types'
 
 defineProps<{
-  item: Person
+  item: BasicPerson
 }>()
 </script>
 
@@ -14,12 +14,11 @@ defineProps<{
       transition duration-400
       hover="scale-105 z10"
     >
-      <NuxtImg
-        v-if="item.profile_path"
+      <img
+        v-if="item.profilePictureUrl"
         width="500"
         height="800"
-        format="webp"
-        :src="`/tmdb${item.profile_path}`"
+        :src="getTmdbImageUrl(item.profilePictureUrl)"
         :alt="item.name"
         w-full h-full object-cover
       />
@@ -31,7 +30,7 @@ defineProps<{
       {{ item.name }}
     </div>
     <div op50>
-      {{ item.character || item.known_for_department }}
+<!--      {{ item.character || item.known_for_department }}-->
     </div>
   </NuxtLink>
 </template>
