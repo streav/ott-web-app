@@ -1,5 +1,5 @@
 <template>
-  <div flex gap2 justify-end p5>
+  <div flex gap2 justify-end items-center p5>
     Season:
     <select rounded-md text-sm p1 px3 @change="onSeasonSelected">
       <option v-for="season in seasons" :key="season.number" :value="season.number" p-1>
