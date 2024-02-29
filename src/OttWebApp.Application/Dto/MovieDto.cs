@@ -16,5 +16,5 @@ public class MovieDto
     public string? Director { get; set; }
     public int? StreamId { get; set; }
     public IEnumerable<GenreDto>? Genres { get; set; }
-    public IEnumerable<BasicPersonDto>? Casts { get; set; }
+    public IEnumerable<PersonCastDto>? Casts { get; set; }
 }

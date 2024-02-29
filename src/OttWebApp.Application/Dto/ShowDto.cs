@@ -16,5 +16,5 @@ public class ShowDto
     public string? RatingSource { get; set; }
     public string? Director { get; set; }
     public IEnumerable<GenreDto>? Genres { get; set; }
-    public IEnumerable<BasicPersonDto>? Casts { get; set; }
+    public IEnumerable<PersonCastDto>? Casts { get; set; }
 }

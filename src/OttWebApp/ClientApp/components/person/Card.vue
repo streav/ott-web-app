@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { BasicPerson } from '~/types'
+import type { Cast, Person } from '~/types'
 
 defineProps<{
-  item: BasicPerson
+  item: Person | Cast
 }>()
 </script>
 
@@ -30,7 +30,7 @@ defineProps<{
       {{ item.name }}
     </div>
     <div op50>
-<!--      {{ item.character || item.known_for_department }}-->
+      {{ item.character || item.knownFor }}
     </div>
   </NuxtLink>
 </template>

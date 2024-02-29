@@ -22,7 +22,7 @@ export interface Movie {
     director?: string | null;
     streamId?: number | null;
     genres?: Genre[] | null;
-    casts?: BasicPerson[] | null;
+    casts?: Cast[] | null;
 }
 
 export interface Show {
@@ -40,7 +40,7 @@ export interface Show {
     ratingSource?: string | null;
     director?: string | null;
     genres?: Genre[] | null;
-    casts?: BasicPerson[] | null;
+    casts?: Cast[] | null;
 }
 
 export interface Genre {
@@ -48,8 +48,30 @@ export interface Genre {
     name?: string | null;
 }
 
-export interface BasicPerson {
+export interface Cast {
     id: number;
     name?: string | null;
     profilePictureUrl?: string | null;
+    character?: string | null;
+}
+
+export enum PersonGender {
+    Unspecified = 0,
+    Female = 1,
+    Male = 2,
+    NonBinary = 3,
+}
+
+export interface Person {
+    id: number;
+    name?: string | null;
+    biography?: string | null;
+    knownFor?: string | null;
+    birthDate?: string | null;
+    deathDay?: string | null;
+    birthPlace?: string | null;
+    profilePictureUrl?: string | null;
+    gender: PersonGender;
+    imdbId?: string | null;
+    popularity: number;
 }
