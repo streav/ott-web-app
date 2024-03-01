@@ -1,10 +1,10 @@
 <template>
   <CarouselBase>
     <template #title>
-      Popular Movies
+      Latest Shows
     </template>
     <template #more>
-      <NuxtLink to="/movie" n-link>
+      <NuxtLink to="/show/explore?from=latest" n-link>
         Explore more
       </NuxtLink>
     </template>
@@ -14,11 +14,11 @@
     </div>
 
     <MediaCard
-        v-else-if="result && result.data && result.data.length > 0"
+        v-if="result && result.data && result.data.length > 0"
         v-for="i of result?.data || []"
         :key="i.id"
         :item="i"
-        type="movie"
+        type="show"
         flex-1 w-40 md:w-60
     />
 
@@ -36,7 +36,7 @@ const loading = ref(false)
 onMounted(async () => {
   loading.value = true
 
-  const {data, error} = await getPopularMovies()
+  const {data, error} = await getLatestShows()
 
   if (!error.value) {
     result.value = data.value

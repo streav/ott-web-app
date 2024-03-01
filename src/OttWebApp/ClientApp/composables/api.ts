@@ -9,7 +9,11 @@ export function getPopularShows() {
 }
 
 export function getLatestMovie() {
-    return useFetch<Movie>('/api/movies/latest')
+    return useFetch<Movie>('/api/movies/latest-movie')
+}
+
+export function getLatestShow() {
+    return useFetch<Movie>('/api/shows/latest-show')
 }
 
 export function getMovie(id: number) {
@@ -26,4 +30,20 @@ export function getShowSeasons(id: number) {
 
 export function getShowEpisodes(id: number, number: number) {
     return useFetch<ShowEpisode[]>(`/api/shows/${id}/seasons/${number}`)
+}
+
+export function getLatestMovies() {
+    return useFetch<PaginatedList<Movie>>(`/api/movies/latest`)
+}
+
+export function getLatestShows() {
+    return useFetch<PaginatedList<Show>>(`/api/shows/latest`)
+}
+
+export function getMovies(page: number, sortBy: string, name: string | null) {
+    return useFetch<Movie[]>(`/api/movies?page=${page}&sortBy=${sortBy}&name=${name}`)
+}
+
+export function getShows(page: number, sortBy: string, name: string | null) {
+    return useFetch<Show[]>(`/api/shows?page=${page}&sortBy=${sortBy}&name=${name}`)
 }

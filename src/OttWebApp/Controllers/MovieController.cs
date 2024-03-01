@@ -17,6 +17,12 @@ public class MovieController : ControllerBase
         _mediator = mediator;
     }
 
+    [HttpGet]
+    public Task<IEnumerable<MovieDto>?> Index([FromQuery] GetMovies query, CancellationToken cancellationToken)
+    {
+        return _mediator.Send(query, cancellationToken);
+    }
+
     [HttpGet("{id:int}")]
     public Task<MovieDto?> Index(int id, CancellationToken cancellationToken)
     {
@@ -32,9 +38,15 @@ public class MovieController : ControllerBase
         return _mediator.Send(new GetPopularMovies(), cancellationToken);
     }
 
-    [HttpGet("latest")]
-    public Task<MovieDto?> Latest(CancellationToken cancellationToken)
+    [HttpGet("latest-movie")]
+    public Task<MovieDto?> LatestMovie(CancellationToken cancellationToken)
     {
         return _mediator.Send(new GetLatestMovie(), cancellationToken);
+    }
+
+    [HttpGet("latest")]
+    public Task<PaginatedListDto<MovieDto>?> Latest(CancellationToken cancellationToken)
+    {
+        return _mediator.Send(new GetLatestMovies(), cancellationToken);
     }
 }

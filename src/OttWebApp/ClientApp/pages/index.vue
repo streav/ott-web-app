@@ -1,6 +1,6 @@
 <template>
-  <Hero/>
-  <CarouselMovie/>
-  <CarouselShow/>
+  <MovieHero/>
+  <CarouselLatestMovies/>
+  <CarouselLatestShows/>
   <TheFooter/>
 </template>

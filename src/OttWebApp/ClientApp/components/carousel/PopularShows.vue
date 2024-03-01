@@ -4,7 +4,7 @@
       Popular Shows
     </template>
     <template #more>
-      <NuxtLink to="/show" n-link>
+      <NuxtLink to="/show/explore?from=popular" n-link>
         Explore more
       </NuxtLink>
     </template>
@@ -14,7 +14,7 @@
     </div>
 
     <MediaCard
-        v-if="result && result.data && result.data.length > 0"
+        v-else-if="result && result.data && result.data.length > 0"
         v-for="i of result?.data || []"
         :key="i.id"
         :item="i"

@@ -16,6 +16,12 @@ public class ShowController : ControllerBase
     {
         _mediator = mediator;
     }
+    
+    [HttpGet]
+    public Task<IEnumerable<ShowDto>?> Index([FromQuery] GetShows query, CancellationToken cancellationToken)
+    {
+        return _mediator.Send(query, cancellationToken);
+    }
 
     [HttpGet("{id:int}")]
     public Task<ShowDto?> Index(int id, CancellationToken cancellationToken)
@@ -30,6 +36,18 @@ public class ShowController : ControllerBase
     public Task<PaginatedListDto<ShowDto>?> Index(CancellationToken cancellationToken)
     {
         return _mediator.Send(new GetPopularShows(), cancellationToken);
+    }
+    
+    [HttpGet("latest-show")]
+    public Task<ShowDto?> LatestShow(CancellationToken cancellationToken)
+    {
+        return _mediator.Send(new GetLatestShow(), cancellationToken);
+    }
+    
+    [HttpGet("latest")]
+    public Task<PaginatedListDto<ShowDto>?> Latest(CancellationToken cancellationToken)
+    {
+        return _mediator.Send(new GetLatestShows(), cancellationToken);
     }
 
     [HttpGet("{id:int}/seasons")]

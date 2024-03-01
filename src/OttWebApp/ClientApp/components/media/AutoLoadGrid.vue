@@ -1,22 +1,21 @@
 <script setup lang="ts">
-import type { Media, MediaType } from '~/types'
+import type {Show, Movie, MediaType} from '~/types'
 
 const props = withDefaults(
-  defineProps<{
-    items: Media[]
-    type: MediaType
-    fetch: (page: number) => Promise<void>
-    count?: number
-    blocking?: boolean
-  }>(),
-  {
-    blocking: true,
-  },
+    defineProps<{
+      items: Movie[] | Show[]
+      type: MediaType
+      fetch: (page: number) => Promise<void>
+      end: boolean,
+      page: number
+    }>(),
+    {},
 )
+
+const emits = defineEmits(['update:page'])
 
 const tailEl = ref<HTMLDivElement>()
 
-let page = 0
 const isLoading = ref(false)
 
 async function loadingNext() {
@@ -24,52 +23,50 @@ async function loadingNext() {
     return
   isLoading.value = true
   try {
-    page += 1
-    await props.fetch(page)
-  }
-  finally {
+    const nextPage = props.page + 1
+    emits('update:page', nextPage)
+    await props.fetch(nextPage)
+  } finally {
     isLoading.value = false
   }
 }
 
-if (process.server || props.blocking)
-  await loadingNext()
-else
-  loadingNext()
+onMounted(() => {
+  window.addEventListener('wheel', scrollListener)
+})
 
-if (process.client) {
-  useIntervalFn(() => {
-    if (!tailEl.value || isLoading.value)
-      return
-    if (props.count != null && props.items?.length >= props.count)
-      return
-    const { top } = tailEl.value.getBoundingClientRect()
-    const delta = top - window.innerHeight
-    if (delta < 400)
-      loadingNext()
-  }, 500)
+onUnmounted(() => {
+  window.removeEventListener('wheel', scrollListener)
+})
+
+loadingNext()
+
+function scrollListener() {
+  if (!tailEl.value || isLoading.value || props.end) return
+
+  const {top} = tailEl.value.getBoundingClientRect()
+  const delta = top - window.innerHeight
+
+  if (delta < 400) {
+    loadingNext()
+  }
 }
 </script>
 
 <template>
   <div>
-    <h1 flex="~" px8 pt8 gap2 text-3xl>
-      <slot />
-    </h1>
-    <div v-if="count != null" px8 op50>
-      {{ $t('{count} items', { count }) }}
-    </div>
+    <slot/>
     <MediaGrid>
       <MediaCard
-        v-for="item of items"
-        :key="item.id"
-        :type="type"
-        :item="item"
+          v-for="item of items"
+          :key="item.id"
+          :type="type"
+          :item="item"
       />
     </MediaGrid>
-    <div ref="tailEl" />
-    <div v-if="isLoading" p10 animate-pulse>
-      <div i-carbon:circle-dash text-4xl ma animate-spin />
+    <div ref="tailEl"/>
+    <div v-if="isLoading" flex justify-center p2>
+      <div class="i-svg-spinners:180-ring w-2em h-2em"></div>
     </div>
   </div>
 </template>
