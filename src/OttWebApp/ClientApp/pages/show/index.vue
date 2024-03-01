@@ -1,5 +1,5 @@
 <template>
-  <ShowHero/>
+  <Hero type="show"/>
   <CarouselPopularShows :explore="false"/>
   <CarouselLatestShows :explore="false"/>
   <TheFooter/>

@@ -1,5 +1,5 @@
 <template>
-  <MovieHero/>
+  <Hero/>
   <CarouselLatestMovies/>
   <CarouselLatestShows/>
   <TheFooter/>

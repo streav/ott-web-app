@@ -13,7 +13,7 @@ export function getLatestMovie() {
 }
 
 export function getLatestShow() {
-    return useFetch<Movie>('/api/shows/latest-show')
+    return useFetch<Show>('/api/shows/latest-show')
 }
 
 export function getMovie(id: number) {

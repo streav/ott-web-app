@@ -1,5 +1,5 @@
 <template>
-  <MovieHero/>
+  <Hero/>
   <CarouselPopularMovies :explore="false"/>
   <CarouselLatestMovies :explore="false"/>
   <TheFooter/>

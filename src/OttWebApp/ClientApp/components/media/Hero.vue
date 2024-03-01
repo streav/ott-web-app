@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import type { Movie } from '~/types'
+import type {MediaType, Movie, Show} from '~/types'
 import { formatTime } from '~/composables/utils'
 
 const props = withDefaults(defineProps<{
-  item: Movie
+  item: Movie | Show,
+  type: MediaType
 }>(), {
+  type: 'movie',
   item: () => ({} as Movie)
 })
 
