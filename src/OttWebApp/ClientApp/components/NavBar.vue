@@ -24,7 +24,7 @@
         :class="isActive ? 'i-ph-video-fill text-primary' : 'i-ph-video'"
       />
     </NuxtLink>
-    <NuxtLink v-slot="{ isActive }" to="/live" title="Live TV">
+    <NuxtLink v-slot="{ isActive }" to="/live" title="Live">
       <div
           text-2xl
           :class="isActive ? 'i-ph-television-simple-fill text-primary' : 'i-ph-television-simple'"
