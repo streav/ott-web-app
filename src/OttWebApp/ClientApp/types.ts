@@ -1,12 +1,5 @@
 export type MediaType = 'movie' | 'show' | 'tv'
 
-export interface PaginatedList<T> {
-    page: number;
-    totalPages: number;
-    total: number;
-    data: T[];
-}
-
 export interface Movie {
     id: number;
     title?: string;

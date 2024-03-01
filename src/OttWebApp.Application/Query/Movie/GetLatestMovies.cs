@@ -4,9 +4,9 @@ using OttWebApp.Application.Dto;
 
 namespace OttWebApp.Application.Query.Movie;
 
-public class GetLatestMovies : IRequest<PaginatedListDto<MovieDto>?>
+public class GetLatestMovies : IRequest<IEnumerable<MovieDto>?>
 {
-    public class Handler : IRequestHandler<GetLatestMovies, PaginatedListDto<MovieDto>?>
+    public class Handler : IRequestHandler<GetLatestMovies, IEnumerable<MovieDto>?>
     {
         private readonly HttpClient _client;
 
@@ -14,8 +14,8 @@ public class GetLatestMovies : IRequest<PaginatedListDto<MovieDto>?>
         {
             _client = factory.CreateClient("streav");
         }
-        
-        public async Task<PaginatedListDto<MovieDto>?> Handle(GetLatestMovies request, CancellationToken cancellationToken)
+
+        public async Task<IEnumerable<MovieDto>?> Handle(GetLatestMovies request, CancellationToken cancellationToken)
         {
             var result = await _client.GetAsync("movies?sortBy=releaseDate_desc&pageSize=10",
                 cancellationToken: cancellationToken);
@@ -25,7 +25,8 @@ public class GetLatestMovies : IRequest<PaginatedListDto<MovieDto>?>
                 return default;
             }
 
-            return await result.Content.ReadFromJsonAsync<PaginatedListDto<MovieDto>>(cancellationToken);
+            var list = await result.Content.ReadFromJsonAsync<PaginatedListDto<MovieDto>>(cancellationToken);
+            return list?.Data;
         }
     }
 }

@@ -4,9 +4,9 @@ using OttWebApp.Application.Dto;
 
 namespace OttWebApp.Application.Query.Show;
 
-public class GetLatestShows : IRequest<PaginatedListDto<ShowDto>?>
+public class GetLatestShows : IRequest<IEnumerable<ShowDto>?>
 {
-    public class Handler : IRequestHandler<GetLatestShows, PaginatedListDto<ShowDto>?>
+    public class Handler : IRequestHandler<GetLatestShows, IEnumerable<ShowDto>?>
     {
         private readonly HttpClient _client;
 
@@ -14,8 +14,8 @@ public class GetLatestShows : IRequest<PaginatedListDto<ShowDto>?>
         {
             _client = factory.CreateClient("streav");
         }
-        
-        public async Task<PaginatedListDto<ShowDto>?> Handle(GetLatestShows request, CancellationToken cancellationToken)
+
+        public async Task<IEnumerable<ShowDto>?> Handle(GetLatestShows request, CancellationToken cancellationToken)
         {
             var result = await _client.GetAsync("shows?sortBy=releaseDate_desc&pageSize=10",
                 cancellationToken: cancellationToken);
@@ -25,7 +25,9 @@ public class GetLatestShows : IRequest<PaginatedListDto<ShowDto>?>
                 return default;
             }
 
-            return await result.Content.ReadFromJsonAsync<PaginatedListDto<ShowDto>>(cancellationToken);
+            var list = await result.Content.ReadFromJsonAsync<PaginatedListDto<ShowDto>>(cancellationToken);
+
+            return list?.Data;
         }
     }
 }

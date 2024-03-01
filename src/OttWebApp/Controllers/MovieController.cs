@@ -33,7 +33,7 @@ public class MovieController : ControllerBase
     }
 
     [HttpGet("popular")]
-    public Task<PaginatedListDto<MovieDto>?> Index(CancellationToken cancellationToken)
+    public Task<IEnumerable<MovieDto>?> Index(CancellationToken cancellationToken)
     {
         return _mediator.Send(new GetPopularMovies(), cancellationToken);
     }
@@ -45,7 +45,7 @@ public class MovieController : ControllerBase
     }
 
     [HttpGet("latest")]
-    public Task<PaginatedListDto<MovieDto>?> Latest(CancellationToken cancellationToken)
+    public Task<IEnumerable<MovieDto>?> Latest(CancellationToken cancellationToken)
     {
         return _mediator.Send(new GetLatestMovies(), cancellationToken);
     }

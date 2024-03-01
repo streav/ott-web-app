@@ -1,11 +1,11 @@
-import type {Movie, PaginatedList, Show, ShowEpisode, ShowSeason} from '~/types'
+import type {Movie, Show, ShowEpisode, ShowSeason} from '~/types'
 
 export function getPopularMovies() {
-    return useFetch<PaginatedList<Movie>>('/api/movies/popular')
+    return useFetch<Movie[]>('/api/movies/popular')
 }
 
 export function getPopularShows() {
-    return useFetch<PaginatedList<Show>>('/api/shows/popular')
+    return useFetch<Show[]>('/api/shows/popular')
 }
 
 export function getLatestMovie() {
@@ -33,11 +33,11 @@ export function getShowEpisodes(id: number, number: number) {
 }
 
 export function getLatestMovies() {
-    return useFetch<PaginatedList<Movie>>(`/api/movies/latest`)
+    return useFetch<Movie[]>(`/api/movies/latest`)
 }
 
 export function getLatestShows() {
-    return useFetch<PaginatedList<Show>>(`/api/shows/latest`)
+    return useFetch<Show[]>(`/api/shows/latest`)
 }
 
 export function getMovies(page: number, sortBy: string, name: string | null) {

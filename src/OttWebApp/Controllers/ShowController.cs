@@ -33,7 +33,7 @@ public class ShowController : ControllerBase
     }
 
     [HttpGet("popular")]
-    public Task<PaginatedListDto<ShowDto>?> Index(CancellationToken cancellationToken)
+    public Task<IEnumerable<ShowDto>?> Index(CancellationToken cancellationToken)
     {
         return _mediator.Send(new GetPopularShows(), cancellationToken);
     }
@@ -45,7 +45,7 @@ public class ShowController : ControllerBase
     }
     
     [HttpGet("latest")]
-    public Task<PaginatedListDto<ShowDto>?> Latest(CancellationToken cancellationToken)
+    public Task<IEnumerable<ShowDto>?> Latest(CancellationToken cancellationToken)
     {
         return _mediator.Send(new GetLatestShows(), cancellationToken);
     }

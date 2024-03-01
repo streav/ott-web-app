@@ -69,7 +69,7 @@ onMounted(async () => {
   const {data, error} = await fetch()
 
   if (!error.value) {
-    result.value = data.value?.data as Movie[] | Show[]
+    result.value = data.value as Movie[] | Show[]
   }
 
   loading.value = false
