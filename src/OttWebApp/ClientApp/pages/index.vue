@@ -1,6 +1,6 @@
 <template>
   <Hero/>
-  <CarouselLatestMovies/>
-  <CarouselLatestShows/>
+  <CarouselMedia />
+  <CarouselMedia type="show" />
   <TheFooter/>
 </template>

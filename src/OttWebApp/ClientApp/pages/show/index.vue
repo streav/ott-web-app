@@ -1,7 +1,7 @@
 <template>
   <Hero type="show"/>
-  <CarouselPopularShows :explore="false"/>
-  <CarouselLatestShows :explore="false"/>
+  <CarouselMedia type="show" query="popular" />
+  <CarouselMedia type="show" query="latest" />
   <TheFooter/>
 </template>
 
