@@ -18,7 +18,7 @@
         v-for="i of result || []"
         :key="i.id"
         :item="i"
-        type="movie"
+        :type="props.type"
         flex-1 w-40 md:w-60
     />
 
