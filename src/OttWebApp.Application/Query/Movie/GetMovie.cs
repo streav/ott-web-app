@@ -19,7 +19,7 @@ public class GetMovie : IRequest<MovieDto?>
 
         public async Task<MovieDto?> Handle(GetMovie request, CancellationToken cancellationToken)
         {
-            var result = await _client.GetAsync($"movies/{request.Id}",
+            var result = await _client.GetAsync($"movies/{request.Id}?include=genres&include=casts",
                 cancellationToken: cancellationToken);
 
             if (!result.IsSuccessStatusCode)

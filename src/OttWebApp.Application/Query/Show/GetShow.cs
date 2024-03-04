@@ -19,7 +19,7 @@ public class GetShow : IRequest<ShowDto?>
 
         public async Task<ShowDto?> Handle(GetShow request, CancellationToken cancellationToken)
         {
-            var result = await _client.GetAsync($"shows/{request.Id}",
+            var result = await _client.GetAsync($"shows/{request.Id}?include=genres&include=casts",
                 cancellationToken: cancellationToken);
 
             if (!result.IsSuccessStatusCode)
