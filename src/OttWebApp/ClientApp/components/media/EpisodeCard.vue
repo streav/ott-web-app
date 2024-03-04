@@ -33,7 +33,7 @@ defineProps<{
       </div>
     </div>
     <div mt-2>
-      S{{ seasonNumber }}E{{ item.number }}: {{ item.name }}
+      Ep{{ item.number }}: {{ item.name }}
     </div>
   </NuxtLink>
 </template>
