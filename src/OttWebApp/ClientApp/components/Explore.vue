@@ -63,7 +63,7 @@ watch(sortBy, (newValue, oldValue) => {
       Explore {{ props.type === 'movie' ? 'Movies' : 'Shows' }}
     </h1>
 
-    <div flex gap6 justify-end p5>
+    <div flex flex-col gap3 p8>
       <div flex gap2 items-center>
         Search:
         <input v-model="search" rounded-md text-sm placeholder="Search by name" p1 px3/>
