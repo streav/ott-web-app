@@ -1,4 +1,4 @@
-import type {Movie, Show, ShowEpisode, ShowSeason} from '~/types'
+import type {Movie, Person, Show, ShowEpisode, ShowSeason} from '~/types'
 
 export function getPopularMovies() {
     return useFetch<Movie[]>('/api/movies/popular')
@@ -46,4 +46,8 @@ export function getMovies(page: number, sortBy: string, name: string | null) {
 
 export function getShows(page: number, sortBy: string, name: string | null) {
     return useFetch<Show[]>(`/api/shows?page=${page}&sortBy=${sortBy}&name=${name}`)
+}
+
+export function getPerson(id: number) {
+    return useFetch<Person>(`/api/person/${id}`)
 }
