@@ -64,14 +64,13 @@ const props = withDefaults(defineProps<{
             </div>
 
             <div flex="~ row wrap gap1">
-              <NuxtLink
+              <div
                   v-for="genre of props.item.genres" :key="genre.id"
-                  :to="`/genre/${genre.id}/${type}`"
                   bg="gray/10 hover:gray/20" p="x2 y1"
                   rounded text-xs
               >
                 {{ genre.name }}
-              </NuxtLink>
+              </div>
             </div>
           </template>
           <template v-if="props.item.language">
