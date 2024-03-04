@@ -2,7 +2,7 @@
   <div
       flex="~ row lg:col"
       justify-evenly items-center
-      py5 lg:px5
+      py3 lg:px3
       border="t lg:r base"
       bg-black
   >
