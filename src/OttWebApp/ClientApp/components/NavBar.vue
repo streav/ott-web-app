@@ -9,10 +9,10 @@
     <NuxtLink v-for="item in items" v-slot="{ isActive }" :to="item.to" :title="item.title">
       <div flex flex-col items-center>
         <div
-            text-2xl
+            text-xl
             :class="isActive ? item.iconActive: item.icon"
         />
-        <div font-bold :class="isActive ? 'text-primary': ''">
+        <div :class="isActive ? 'text-primary': ''">
           {{ item.title }}
         </div>
       </div>
