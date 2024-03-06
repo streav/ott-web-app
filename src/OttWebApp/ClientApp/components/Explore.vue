@@ -64,13 +64,13 @@ watch(sortBy, (newValue, oldValue) => {
     </h1>
 
     <div flex flex-col gap3 p8>
-      <div flex gap2 items-center>
-        Search:
-        <input v-model="search" rounded-md text-sm placeholder="Search by name" p1 px3/>
+      <div flex items-center>
+        <span w-20>Search:</span>
+        <input v-model="search" rounded-md text-sm placeholder="Search by name" p1 px3 w-60/>
       </div>
-      <div flex gap2 items-center>
-        Sort By:
-        <select v-model="sortBy" rounded-md text-sm p1 px3>
+      <div flex items-center>
+        <span w-20>Sort By:</span>
+        <select v-model="sortBy" rounded-md text-sm p1 px3 w-60>
           <option value="releaseDate">Release Date</option>
           <option value="releaseDate_desc">Release Date Desc.</option>
           <option value="rating">Rating</option>
