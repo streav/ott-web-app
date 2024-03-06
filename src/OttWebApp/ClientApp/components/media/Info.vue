@@ -13,15 +13,21 @@ const props = withDefaults(defineProps<{
 
 <template>
   <div p4 grid="~ cols-[max-content_1fr]" gap-8 items-center ma max-w-300>
-    <img
-        width="400"
-        height="600"
-        :src="getTmdbImageUrl(item.posterUrl)"
-        :alt="props.item.title || props.item.name"
-        block border="4 gray4/10" w-79 lt-md:hidden
-        transition duration-400 object-cover aspect="10/16"
-        :style="{ 'view-transition-name': `item-${props.item.id}` }"
-    />
+    
+    <div block border="4 gray4/10" w-79 lt-md:hidden transition duration-400 object-cover aspect="3/2">
+      <img
+          v-if="item.posterUrl"
+          w-full
+          :src="getTmdbImageUrl(item.posterUrl)"
+          :alt="props.item.title || props.item.name"
+          :style="{ 'view-transition-name': `item-${props.item.id}` }"
+      />
+
+      <div v-else op10 flex h-462px>
+        <div i-ph:question ma text-4xl />
+      </div>
+    </div>
+    
     <div lt-md:w="[calc(100vw-2rem)]" flex="~ col" md:p4 gap6>
       <div v-if="props.item.overview">
         <h2 text-3xl mb4>
@@ -32,7 +38,7 @@ const props = withDefaults(defineProps<{
 
       <div text-sm op80>
         <ul grid="~ cols-[max-content_1fr] lg:cols-[max-content_1fr_max-content_1fr] gap3" items-center>
-          <template v-if="props.item.release_date">
+          <template v-if="props.item.releaseDate">
             <div>
               Release Date
             </div>
