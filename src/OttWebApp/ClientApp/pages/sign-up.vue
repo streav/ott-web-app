@@ -5,7 +5,7 @@
 
   <PricingGrid v-model:plan="plan" p8/>
 
-  <div ref="divider" class="flex justify-center py8 px10">
+  <div ref="divider" class="flex justify-center pt8 px10">
     <div class="w-full bg-gray:5 h-2px"/>
   </div>
 

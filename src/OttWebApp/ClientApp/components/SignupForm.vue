@@ -18,7 +18,7 @@
         @click="submit"
         flex justify-center p="x6 y3" lg:w-150 w-full
         bg="primary hover:primary/70 disabled:gray/50" transition
-        title="Watch"
+        title="Sign up"
     >
       <i v-if="loading" class="i-svg-spinners:180-ring"></i>
       <span v-else>Sign up</span>
