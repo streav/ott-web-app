@@ -51,3 +51,14 @@ export function getShows(page: number, sortBy: string, name: string | null) {
 export function getPerson(id: number) {
     return useFetch<Person>(`/api/person/${id}`)
 }
+
+export function signUp(email: string, password: string, plan: string) {
+    return useFetch(`api/auth/register`, {
+        method: 'post',
+        body: {
+            email,
+            password,
+            plan
+        }
+    })
+}

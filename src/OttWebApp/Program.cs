@@ -1,5 +1,6 @@
 using OttWebApp.Application;
 using OttWebApp.Core.Entity;
+using OttWebApp.Extension;
 using OttWebApp.Infrastructure;
 using OttWebApp.Infrastructure.EntityFramework;
 
@@ -73,7 +74,7 @@ app.UseAuthorization();
 
 app.UseStaticFiles();
 
-app.MapGroup("/api/auth").MapIdentityApi<User>();
+app.MapCustomIdentityApi();
 
 app.MapControllers();
 

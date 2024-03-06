@@ -87,3 +87,9 @@ export interface ShowEpisode {
     backdropUrl?: string;
     streamId?: number;
 }
+
+export interface PricingPlan {
+    name: string,
+    price: number,
+    devices: number
+}
