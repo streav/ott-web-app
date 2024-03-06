@@ -65,7 +65,7 @@ public static class IdentityApiEndpointRouteBuilderExtensions
 
             if (subscriberId.HasValue)
             {
-                user.Id = subscriberId.Value;
+                user.SubscriberId = subscriberId.Value;
 
                 await userManager.UpdateAsync(user);
             }

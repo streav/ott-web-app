@@ -34,4 +34,12 @@ watch(plan, () => {
     divider.value.scrollIntoView({behavior: 'smooth'})
   }
 })
+
+definePageMeta({
+  middleware: 'auth',
+  auth: {
+    unauthenticatedOnly: true,
+    navigateAuthenticatedTo: '/',
+  }
+})
 </script>

@@ -29,17 +29,9 @@
         <span v-else>Login</span>
       </button>
 
-      <div class="my-4">
-
-        <p v-if="success" text-green>Your account has been created. You can
-          <NuxtLink underline to="/login">login now</NuxtLink>
-          .
-        </p>
-
-        <ul v-else class="text-red">
-          <li v-for="error in errors">{{ error }}</li>
-        </ul>
-      </div>
+      <p class="text-red text-center py-2">
+        {{ error }}
+      </p>
 
       <p>New to here?
         <NuxtLink underline to="/sign-up">Sign up now.</NuxtLink>
@@ -50,22 +42,35 @@
 </template>
 
 <script setup lang="ts">
+const {signIn} = useAuth()
+
 const email = ref('')
 const password = ref('')
 const loading = ref(false)
 
-const errors = ref([] as string[])
-const success = ref(false)
+const error = ref('')
 
 async function submit() {
-  success.value = false
-  errors.value = []
+  error.value = ''
   loading.value = true
-  
-  // login implementation
+
+  try {
+    await signIn({email: email.value, password: password.value}, {callbackUrl: '/'})
+  } catch (e) {
+    console.dir(e)
+    error.value = 'Wrong email or password.'
+  }
 
   loading.value = false
 }
+
+definePageMeta({
+  middleware: 'auth',
+  auth: {
+    unauthenticatedOnly: true,
+    navigateAuthenticatedTo: '/',
+  }
+})
 
 useHead({
   title: 'Login'
