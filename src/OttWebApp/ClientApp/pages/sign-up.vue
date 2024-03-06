@@ -15,8 +15,6 @@
 
   <SignupForm p8 :plan="plan.name"/>
 
-  <TheFooter/>
-
 </template>
 <script setup lang="ts">
 import {plans} from '~/constants/plans'

@@ -6,6 +6,7 @@
   >
     <div id="app-scroller" of-x-hidden of-y-auto relative>
       <NuxtPage/>
+      <TheFooter/>
     </div>
     <NavBar lg:order-first/>
   </div>

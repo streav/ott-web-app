@@ -16,5 +16,4 @@ useHead({
 
 <template>
   <PersonInfo :item="person"/>
-  <TheFooter/>
 </template>

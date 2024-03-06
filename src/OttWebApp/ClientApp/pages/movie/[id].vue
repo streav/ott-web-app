@@ -19,6 +19,5 @@ useHead({
   <div>
     <MediaHero :item="item" />
     <MediaDetails :item="item" type="movie" />
-    <TheFooter />
   </div>
 </template>
