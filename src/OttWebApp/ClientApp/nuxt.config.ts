@@ -15,7 +15,7 @@ export default defineNuxtConfig({
         '@unocss/nuxt',
         '@sidebase/nuxt-auth'
     ],
-    css: [],
+    css: ['video.js/dist/video-js.css'],
     experimental: {
         inlineSSRStyles: false,
         viewTransition: true,
