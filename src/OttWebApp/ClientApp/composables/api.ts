@@ -1,4 +1,4 @@
-import type {Movie, Person, Show, ShowEpisode, ShowSeason} from '~/types'
+import type {Movie, Person, Show, ShowEpisode, ShowSeason, StreamUrl} from '~/types'
 
 export function getPopularMovies() {
     return useFetch<Movie[]>('/api/movies/popular')
@@ -59,6 +59,19 @@ export function signUp(email: string, password: string, plan: string) {
             email,
             password,
             plan
+        }
+    })
+}
+
+export function getOnDemandStreamUrls(id: number) {
+    const {token} = useAuth()
+    return useFetch<StreamUrl>(`/api/on-demand-stream/urls`, {
+        method: 'post',
+        body: {
+            streamId: id
+        },
+        headers: {
+            Authorization: token.value as string
         }
     })
 }

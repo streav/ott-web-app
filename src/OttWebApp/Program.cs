@@ -49,6 +49,8 @@ builder.Services.AddStreavHttpClient(apiBaseUrl, clientId, clientSecret);
 
 builder.Services.AddApplication();
 
+builder.Services.AddHttpContextAccessor();
+
 var app = builder.Build();
 
 // migrate database

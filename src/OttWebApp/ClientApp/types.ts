@@ -93,3 +93,9 @@ export interface PricingPlan {
     price: number,
     devices: number
 }
+
+export interface StreamUrl {
+    format: string,
+    fileFormat?: string,
+    url: string
+}

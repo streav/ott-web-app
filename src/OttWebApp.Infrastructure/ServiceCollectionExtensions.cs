@@ -16,7 +16,7 @@ public static class ServiceCollectionExtensions
         string clientSecret)
     {
         const string scopes =
-            "api.live-stream.read api.movie.read api.show.read api.subscriber.read api.subscriber.create api.subscriber.update";
+            "api.live-stream.read api.movie.read api.show.read api.subscriber.read api.subscriber.create api.subscriber.update api.od-stream.read";
 
         services.AddAccessTokenManagement(options =>
         {
