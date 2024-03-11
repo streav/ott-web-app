@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import type {ShowEpisode} from '~/types'
 
-defineProps<{
+const props = defineProps<{
   item: ShowEpisode,
   showId: number,
-  seasonNumber: number
+  seasonNumber: number,
+  direct: boolean
 }>()
 </script>
 
 <template>
   <NuxtLink
-      target="_blank"
+      :target="!props.direct ? '_blank' : undefined"
       :to="`/watch/show/${showId}?season=${seasonNumber}&episode=${item.number}`" pb2
   >
     <div

@@ -82,7 +82,7 @@ export interface ShowEpisode {
     number: number;
     name?: string;
     overview?: string;
-    releaseDate?: Date;
+    releaseDate?: string;
     runtimeMinutes?: number;
     backdropUrl?: string;
     streamId?: number;

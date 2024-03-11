@@ -17,15 +17,20 @@
         {{ genre.name }}
       </div>
     </div>
-    <div max-w-200>{{ props.item.overview }}</div>
+    <div v-if="props.episode" text-xl>
+      S{{ props.seasonNumber }}:E{{ props.episode.number }} "{{ props.episode.name }}"
+    </div>
+    <div max-w-200>{{ props.episode?.overview ?? props.item.overview }}</div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type {Movie, Show} from '~/types'
+import type {Movie, Show, ShowEpisode} from '~/types'
 
 const props = defineProps<{
   item: Movie | Show;
+  episode: ShowEpisode | undefined,
+  seasonNumber: number | undefined
 }>()
 
 const show = ref(true)

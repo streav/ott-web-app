@@ -17,7 +17,7 @@ useHead({
 
 <template>
   <div>
-    <MediaHero :item="item" />
+    <MediaHero :item="item" type="show" />
     <MediaDetails :item="item" type="show" />
   </div>
 </template>
