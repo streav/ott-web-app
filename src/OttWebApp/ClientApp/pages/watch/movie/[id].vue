@@ -3,7 +3,7 @@
 
   <div w-full h-full>
     <video w-full h-full ref="videoPlayerEl" class="video-js"
-           :poster="movie.backdropUrl ? getTmdbImageUrl(movie.backdropUrl) : undefined"></video>
+           :poster="movie.backdropUrl?.replace('{TMDB_BASE_PATH}', 'https://image.tmdb.org/t/p/original')"></video>
   </div>
 </template>
 
