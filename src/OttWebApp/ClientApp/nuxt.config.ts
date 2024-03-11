@@ -23,7 +23,7 @@ export default defineNuxtConfig({
     },
     auth: {
         provider: {
-            type: 'refresh',
+            type: 'local',
             endpoints: {
                 getSession: {path: '/info', method: 'get'}
             },

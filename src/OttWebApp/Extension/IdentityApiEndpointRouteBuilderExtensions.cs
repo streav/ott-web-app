@@ -25,9 +25,6 @@ public static class IdentityApiEndpointRouteBuilderExtensions
     {
         ArgumentNullException.ThrowIfNull(endpoints);
 
-        var timeProvider = endpoints.ServiceProvider.GetRequiredService<TimeProvider>();
-        var bearerTokenOptions = endpoints.ServiceProvider.GetRequiredService<IOptionsMonitor<BearerTokenOptions>>();
-
         var routeGroup = endpoints.MapGroup("/api/auth");
 
         routeGroup.MapPost("/register", async Task<Results<Ok, ValidationProblem>>
@@ -100,44 +97,26 @@ public static class IdentityApiEndpointRouteBuilderExtensions
             return TypedResults.Empty;
         });
 
-        routeGroup.MapPost("/refresh",
-            async Task<Results<Ok<AccessTokenResponse>, UnauthorizedHttpResult, SignInHttpResult, ChallengeHttpResult>>
-                ([FromBody] RefreshRequest refreshRequest, [FromServices] IServiceProvider sp) =>
-            {
-                var signInManager = sp.GetRequiredService<SignInManager<User>>();
-                var refreshTokenProtector =
-                    bearerTokenOptions.Get(IdentityConstants.BearerScheme).RefreshTokenProtector;
-                var refreshTicket = refreshTokenProtector.Unprotect(refreshRequest.RefreshToken);
-
-                // Reject the /refresh attempt with a 401 if the token expired or the security stamp validation fails
-                if (refreshTicket?.Properties.ExpiresUtc is not { } expiresUtc ||
-                    timeProvider.GetUtcNow() >= expiresUtc ||
-                    await signInManager.ValidateSecurityStampAsync(refreshTicket.Principal) is not { } user)
-
-                {
-                    return TypedResults.Challenge();
-                }
-
-                var newPrincipal = await signInManager.CreateUserPrincipalAsync(user);
-                return TypedResults.SignIn(newPrincipal, authenticationScheme: IdentityConstants.BearerScheme);
-            });
-
         routeGroup.MapGet("/info", async Task<Results<Ok<InfoResponse>, ValidationProblem, NotFound>>
             (ClaimsPrincipal claimsPrincipal, [FromServices] IServiceProvider sp) =>
         {
             var userManager = sp.GetRequiredService<UserManager<User>>();
+            var client = sp.GetRequiredService<IHttpClientFactory>().CreateClient("streav");
+
             if (await userManager.GetUserAsync(claimsPrincipal) is not { } user)
             {
                 return TypedResults.NotFound();
             }
 
-            return TypedResults.Ok(await CreateInfoResponseAsync(user, userManager));
+            return TypedResults.Ok(await CreateInfoResponseAsync(user, userManager, client));
         }).RequireAuthorization();
+
+        routeGroup.MapPost("/logout", () => Results.Ok()).RequireAuthorization();
 
         return new IdentityEndpointsConventionBuilder(routeGroup);
     }
 
-    private record SubscriberCreatedDto(int Id);
+    private record SubscriberDto(int Id, DateTimeOffset? ExpiresAt, int? MaxConnections);
 
     private static async Task<int?> CreateSubscriberAsync(HttpClient client, RegisterRequest request)
     {
@@ -162,8 +141,20 @@ public static class IdentityApiEndpointRouteBuilderExtensions
             return default;
         }
 
-        var data = await response.Content.ReadFromJsonAsync<SubscriberCreatedDto>();
+        var data = await response.Content.ReadFromJsonAsync<SubscriberDto>();
         return data?.Id;
+    }
+
+    private static async Task<SubscriberDto?> GetSubscriberAsync(int id, HttpClient client)
+    {
+        var response = await client.GetAsync($"subscribers/{id}");
+
+        if (!response.IsSuccessStatusCode)
+        {
+            return default;
+        }
+
+        return await response.Content.ReadFromJsonAsync<SubscriberDto>();
     }
 
     private static ValidationProblem CreateValidationProblem(IdentityResult result)
@@ -194,15 +185,20 @@ public static class IdentityApiEndpointRouteBuilderExtensions
         return TypedResults.ValidationProblem(errorDictionary);
     }
 
-    private static async Task<InfoResponse> CreateInfoResponseAsync<TUser>(TUser user, UserManager<TUser> userManager)
-        where TUser : class
+    public record InfoResponse(string? Email, DateTimeOffset? ExpiresAt, int? MaxConnections);
+
+    private static async Task<InfoResponse> CreateInfoResponseAsync(User user, UserManager<User> userManager,
+        HttpClient client)
     {
-        return new()
+        SubscriberDto? subscriber = null;
+        if (user.SubscriberId.HasValue)
         {
-            Email = await userManager.GetEmailAsync(user) ??
-                    throw new NotSupportedException("Users must have an email."),
-            IsEmailConfirmed = await userManager.IsEmailConfirmedAsync(user),
-        };
+            subscriber = await GetSubscriberAsync(user.SubscriberId.Value, client);
+        }
+
+        var email = await userManager.GetEmailAsync(user) ??
+                    throw new NotSupportedException("Users must have an email.");
+        return new InfoResponse(email, subscriber?.ExpiresAt, subscriber?.MaxConnections);
     }
 
     private sealed class IdentityEndpointsConventionBuilder(RouteGroupBuilder inner) : IEndpointConventionBuilder

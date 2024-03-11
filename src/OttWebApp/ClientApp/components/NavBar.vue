@@ -44,6 +44,12 @@ const items = [
     iconActive: 'i-ph-television-simple-fill text-primary',
     title: 'Live',
     to: '/live'
+  },
+  {
+    icon: 'i-ph-user',
+    iconActive: 'i-ph-user-fill text-primary',
+    title: 'Account',
+    to: '/user'
   }
 ]
 </script>
