@@ -20,7 +20,7 @@ const movieRes = await getMovie(route.params.id as number)
 const movie = ref(movieRes.data.value as Movie)
 
 if (!movie.value) {
-  throw createError({
+  throw showError({
     statusCode: 404,
     message: 'Movie not found'
   })
@@ -37,7 +37,7 @@ let urlsRes = await getOnDemandStreamUrls(movie.value.streamId)
 
 const urls = urlsRes.data.value as StreamUrl[] | null
 if (!urls || urls.length === 0) {
-  throw createError({
+  throw showError({
     statusCode: 404,
     message: 'Movie not found'
   })
@@ -47,7 +47,7 @@ const hlsUrl = urls.find(u => u.format === 'hls')
 const mp4Url = urls.find(u => u.fileFormat === 'mp4')
 
 if (!hlsUrl && !mp4Url) {
-  throw createError({
+  throw showError({
     statusCode: 404,
     message: 'Movie not found'
   })

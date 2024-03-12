@@ -50,7 +50,7 @@ async function fetchEpisode() {
   if (!show.value) {
     loading.value = false
 
-    throw createError({
+    throw showError({
       statusCode: 404,
       message: 'Show not found'
     })
@@ -66,7 +66,7 @@ async function fetchEpisode() {
   if (!seasons || seasons.value.length === 0) {
     loading.value = false
 
-    throw createError({
+    throw showError({
       statusCode: 404,
       message: 'Show not found'
     })
@@ -83,7 +83,7 @@ async function fetchEpisode() {
   } else {
     loading.value = false
 
-    throw createError({
+    throw showError({
       statusCode: 404,
       message: 'Show not found'
     })
@@ -108,7 +108,7 @@ async function fetchEpisode() {
   if (!urls || urls.length === 0) {
     loading.value = false
 
-    throw createError({
+    throw showError({
       statusCode: 404,
       message: 'Show not found'
     })
@@ -120,7 +120,7 @@ async function fetchEpisode() {
   if (!hlsUrl && !mp4Url) {
     loading.value = false
 
-    throw createError({
+    throw showError({
       statusCode: 404,
       message: 'Show not found'
     })
