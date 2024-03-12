@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using OttWebApp.Core.Entity;
 
 namespace OttWebApp.Extension;
@@ -32,6 +31,7 @@ public static class IdentityApiEndpointRouteBuilderExtensions
         {
             var userManager = sp.GetRequiredService<UserManager<User>>();
             var client = sp.GetRequiredService<IHttpClientFactory>().CreateClient("streav");
+            var configuration = sp.GetRequiredService<IConfiguration>();
 
             if (!userManager.SupportsUserEmail)
             {
@@ -58,7 +58,8 @@ public static class IdentityApiEndpointRouteBuilderExtensions
                 return CreateValidationProblem(result);
             }
 
-            var subscriberId = await CreateSubscriberAsync(client, registration);
+            var bundleId = configuration.GetValue("Streav:BundleId", 1);
+            var subscriberId = await CreateSubscriberAsync(client, registration, bundleId);
 
             if (subscriberId.HasValue)
             {
@@ -118,7 +119,7 @@ public static class IdentityApiEndpointRouteBuilderExtensions
 
     private record SubscriberDto(int Id, DateTimeOffset? ExpiresAt, int? MaxConnections);
 
-    private static async Task<int?> CreateSubscriberAsync(HttpClient client, RegisterRequest request)
+    private static async Task<int?> CreateSubscriberAsync(HttpClient client, RegisterRequest request, int bundleId)
     {
         var response = await client.PostAsJsonAsync("subscribers", new
         {
@@ -133,7 +134,8 @@ public static class IdentityApiEndpointRouteBuilderExtensions
             },
             Note = "created by ott demo",
             Hls = true,
-            MpegTs = true
+            MpegTs = true,
+            Bundles = new[] { bundleId }
         });
 
         if (!response.IsSuccessStatusCode)
