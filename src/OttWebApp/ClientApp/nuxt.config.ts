@@ -29,7 +29,8 @@ export default defineNuxtConfig({
             },
             token: {
                 signInResponseTokenPointer: '/accessToken',
-                sameSiteAttribute: false
+                sameSiteAttribute: false,
+                maxAgeInSeconds: 3600
             }
         }
     }
