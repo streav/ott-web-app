@@ -1,7 +1,7 @@
 # Streav OTT Web App
 
-This demo OTT (Over-The-Top) web application showcases the capabilities of Streav.
-Built using .NET 8, Nuxt 3, Vue 3, UnoCss, video.js, and powered by [Streav](https://streav.com).
+This demo OTT (Over-The-Top) web application showcases the capabilities of [Streav](https://streav.com).
+Built using .NET 8, Nuxt 3, Vue 3, UnoCss, video.js, and powered by Streav API.
 
 ## Screenshots
 ![1](https://github.com/streav/ott-web-app/assets/37005069/f9533c9c-dfa4-4983-ace2-f289ff5c2c3d)
