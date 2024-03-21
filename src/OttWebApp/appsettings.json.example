@@ -1,0 +1,18 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "db": "Data Source=ott.db"
+  },
+  "Streav": {
+    "ApiBaseUrl": "http://localhost:5000/",
+    "ClientId": "",
+    "ClientSecret": "",
+    "BundleId": 1
+  }
+}
