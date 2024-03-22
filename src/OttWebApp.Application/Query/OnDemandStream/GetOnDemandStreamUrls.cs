@@ -45,7 +45,7 @@ public class GetOnDemandStreamUrls : IRequest<IEnumerable<StreamUrlDto>?>
             {
                 request.StreamId,
                 user.SubscriberId,
-                Https = _httpContext?.Request.IsHttps
+                Https = true
             }, cancellationToken: cancellationToken);
 
             if (!result.IsSuccessStatusCode)
