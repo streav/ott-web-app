@@ -1,4 +1,5 @@
 # Streav OTT Web App
+[![BuiltWithDot.Net shield](https://builtwithdot.net/project/5740/ott-web-app-aspnet-core/badge)](https://builtwithdot.net/project/5740/ott-web-app-aspnet-core)
 
 This demo OTT (Over-The-Top) web application showcases the capabilities of [Streav](https://streav.com).
 Built using .NET 8, Nuxt 3, Vue 3, UnoCss, video.js, and powered by Streav API.
